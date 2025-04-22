@@ -18,7 +18,7 @@ export default async function Home() {
           lo que más importa.
         </p>
       </header>
-      <main className="p-4">
+      <main className="p-4 grow">
         <h2 className="text-2xl font-bold text-center">
           Mira algunos de nuestro productos:
         </h2>

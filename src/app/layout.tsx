@@ -30,9 +30,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <div className="mt-[40px]">
+        <div className="mt-[40px] max-w-[1300px] m-auto bg-white md:px-4 lg:p-x8 min-h-screen flex flex-col">
           {children}
-          <footer className="bg-gray-800 text-white py-5 mt-8">
+          <footer className="bg-gray-800 text-white py-5 mt-8 ">
             <p className="text-center font-bold">
               hecho por cristian david roa
             </p>

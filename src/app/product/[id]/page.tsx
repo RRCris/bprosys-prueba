@@ -32,7 +32,7 @@ export default async function ProductDetailPage({ params }: Props) {
   };
 
   return (
-    <main className="container mx-auto py-8 px-4">
+    <main className="container mx-auto py-8 px-4 grow">
       <div className="grid gap-8 md:grid-cols-3">
         {/* Columna izquierda - Información principal */}
         <div className="md:col-span-2 space-y-6">
