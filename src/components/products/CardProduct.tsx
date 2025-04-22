@@ -3,22 +3,27 @@ import {
   ValidLevel,
   ValidType,
 } from "@/@types/products.types";
+import Button from "@/UI/button/Button";
 import Iconify from "@/UI/iconify/Iconify";
+import Link from "next/link";
 
 interface Props {
   product: ProductoBancario;
 }
 export default function CardProduct({ product }: Props) {
   return (
-    <div className="bg-gray-100 w-[300px] h-[200px] rounded-2xl overflow-ellipsis p-3 ">
-      <h3 className="text-center font-bold text-xl">{product.nombre}</h3>
-      <div className="m-3 flex justify-center items-center gap-2">
-        <TagLevel level={product.nivelRiesgo} />
-        <TagType validType={product.tipo} />
+    <Link href={`/product/${product.id}`}>
+      <div className="bg-gray-100 w-[300px] h-[250px] rounded-2xl overflow-ellipsis p-3 hover:scale-105 transition-transform duration-500">
+        <h3 className="text-center font-bold text-xl">{product.nombre}</h3>
+        <div className="m-3 flex justify-center items-center gap-2">
+          <TagLevel level={product.nivelRiesgo} />
+          <TagType validType={product.tipo} />
+        </div>
+        <p className="mt-4">{product.summary}</p>
+        <TagRate rate={product.tasaInteres} />
+        <Button className="w-full mt-2 shadow-none">Conoce más</Button>
       </div>
-      <p className="mt-4">{product.summary}</p>
-      <TagRate rate={product.tasaInteres} />
-    </div>
+    </Link>
   );
 }
 

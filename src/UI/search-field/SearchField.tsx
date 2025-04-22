@@ -3,11 +3,15 @@ import { FormEventHandler, useState } from "react";
 import Iconify from "../iconify/Iconify";
 import { redirect } from "next/navigation";
 
-export default function SearchField() {
+interface Props {
+  onSubmit?: (param: string) => void;
+}
+export default function SearchField({ onSubmit }: Props) {
   const [searchParam, setSearchParam] = useState("");
   const handleSearch: FormEventHandler = (e) => {
     e.preventDefault();
-    redirect(`/search/${searchParam}`);
+    if (onSubmit) onSubmit(searchParam);
+    else redirect(`/search?param=${searchParam}`);
   };
   return (
     <form className="flex" onSubmit={handleSearch}>

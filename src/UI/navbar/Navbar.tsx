@@ -12,7 +12,7 @@ export default function Navbar() {
         <Link href="/">
           <button>Home</button>
         </Link>
-        <Link href="#">
+        <Link href="/search">
           <button>Productos</button>
         </Link>
         <SearchField />

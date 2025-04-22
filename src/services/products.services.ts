@@ -1,24 +1,27 @@
+"use server";
 import { ProductoBancario } from "@/@types/products.types";
 import productosBancarios from "@/mock/products.mock";
 import { delay } from "@/utils/time";
 
 export async function getSomeProducts(): Promise<ProductoBancario[]> {
-  await delay(1); // Espera 1 segundo
+  // await delay(1); // Espera 1 segundo
   return productosBancarios.slice(1, 5); // Retorna el array de productos
 }
 
 export async function getProductForName(
-  searchTerm: string
+  searchTerm: string,
+  listProducts?: ProductoBancario[]
 ): Promise<ProductoBancario[]> {
   await delay(1);
+  const products: ProductoBancario[] = listProducts || productosBancarios;
 
   if (!searchTerm.trim()) {
-    return productosBancarios; // Si no hay término de búsqueda, retorna todos
+    return products; // Si no hay término de búsqueda, retorna todos
   }
 
   const term = searchTerm.toLowerCase();
 
-  return productosBancarios.filter((producto) => {
+  return products.filter((producto) => {
     const nombreProducto = producto.nombre.toLowerCase();
 
     return nombreProducto.includes(term) || term.includes(nombreProducto);
@@ -28,7 +31,7 @@ export async function getProductForName(
 export async function getCategories(): Promise<
   { categoria: string; count: number }[]
 > {
-  await delay(1);
+  // await delay(1);
 
   const conteoCategorias: Record<string, number> = {};
 
@@ -45,7 +48,7 @@ export async function getCategories(): Promise<
 export async function filterCategory(
   categoria: string
 ): Promise<ProductoBancario[]> {
-  await delay(1);
+  // await delay(1);
 
   // Si no se especifica categoría, retorna todos los productos
   if (!categoria.trim()) {
@@ -60,7 +63,7 @@ export async function filterCategory(
 }
 
 export async function getProduct(id: number): Promise<ProductoBancario | null> {
-  await delay(1);
+  // await delay(1);
 
   const productoEncontrado = productosBancarios.find(
     (producto) => producto.id === id
@@ -68,4 +71,14 @@ export async function getProduct(id: number): Promise<ProductoBancario | null> {
 
   // Retorna el producto o null si no se encuentra
   return productoEncontrado || null;
+}
+
+export async function searchProduct(param: string, category?: string) {
+  console.log(category);
+  if (category && category !== "sin filtro") {
+    const productsWithCategory = await filterCategory(category);
+    return await getProductForName(param, productsWithCategory);
+  } else {
+    return await getProductForName(param);
+  }
 }
