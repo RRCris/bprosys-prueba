@@ -1,3 +1,9 @@
+import NotFoundPage from "@/UI/not-found/NotFoundPage";
+
 export default function NotFoundProduct() {
-  return <div>not found product 404</div>;
+  return (
+    <>
+      <NotFoundPage message="¡No se ha encontrado el producto!" />
+    </>
+  );
 }
