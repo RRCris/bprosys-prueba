@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/UI/navbar/Navbar";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Navbar />
+        <div className="mt-[40px] max-w-[1300px] m-auto bg-white md:px-4 lg:p-x8 min-h-screen flex flex-col">
+          {children}
+          <footer className="bg-gray-800 text-white py-5 mt-8 ">
+            <p className="text-center font-bold">
+              hecho por cristian david roa
+            </p>
+            <ul className="flex justify-center items-center gap-3">
+              <li>
+                <Link
+                  href="https://www.linkedin.com/in/devcris2023/"
+                  className="text-blue-300"
+                >
+                  LinkedIn
+                </Link>
+              </li>
+              <li>Email: curiosity.cdrr@gmail.com</li>
+            </ul>
+          </footer>
+        </div>
       </body>
     </html>
   );
